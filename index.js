@@ -77,7 +77,7 @@ app.post('/',function (req, res, next){
 });
 
 app.get('/reset', function (req, res, next){
-    console.log("RESETING DATABASE")
+    console.log("RESETTING DATABASE")
   var payload = {};
   pool.query("DROP TABLE IF EXISTS workouts", function(err){
     var createString = "CREATE TABLE workouts(" +
@@ -87,7 +87,7 @@ app.get('/reset', function (req, res, next){
     "weight DECIMAL," +
     "date DATE" +
     "lbs BOOLEAN)";
-    mysql.pool.query(createString, function(err){
+    pool.query(createString, function(err){
       payload.results = "Table reset";
       res.render('body', payload);
     })
@@ -95,6 +95,7 @@ app.get('/reset', function (req, res, next){
 });
 
 app.use(function (err, req, res, next) {
+  console.log(err);
   res.status(500).send('Internal Server Error');
 })
 
