@@ -88,6 +88,7 @@ app.get('/reset', function (req, res, next){
     "date DATE" +
     "lbs BOOLEAN)";
     pool.query(createString, function(err){
+      if(err) console.log(err);
       payload.results = "Table reset";
       res.render('body', payload);
     })
