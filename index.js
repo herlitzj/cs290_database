@@ -85,7 +85,7 @@ app.get('/reset', function (req, res, next){
     "name VARCHAR(255) NOT NULL," +
     "reps INT," +
     "weight DECIMAL," +
-    "date DATE" +
+    "date DATE," +
     "lbs BOOLEAN)";
     pool.query(createString, function(err){
       if(err) console.log(err);
