@@ -1,0 +1,26 @@
+{
+  "name": "cs290_database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "forever index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herlitzj/cs290_database.git"
+  },
+  "author": "Jeff Herlitz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/herlitzj/cs290_database/issues"
+  },
+  "homepage": "https://github.com/herlitzj/cs290_database#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "forever": "^0.15.1",
+    "mysql": "^2.10.2"
+  }
+}

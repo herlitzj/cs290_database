@@ -1,0 +1,64 @@
+<style>
+  table {
+  border-collapse: collapse;
+  }
+  th, td {
+    border: solid black 1px;
+    padding: 5px;
+  }
+  th {
+    text-align: left;
+  }
+  #table_name {
+    text-align: center;
+  }
+  .warning {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+
+{{#if results}}
+  <div>
+    <h2 class="warning">{{ results }}</h2>
+  </div>
+{{/if}}
+
+<table>
+  <tr>
+    <th id='table_name' colspan='6'>Workout Tracker</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Reps</th>
+    <th>Weight</th>
+    <th>Date</th>
+    <th>LBS/KG</th>
+    <th>Edit</th>
+  </tr>
+  {{#each row}}
+    <tr>
+      <form>
+        <td>{{name}}</td>
+        <td>{{reps}}</td>
+        <td>{{weight}}</td>
+        <td>{{date}}</td>
+        <td>{{lbs}}</td>
+        <td>
+        <button type="submit" formmethod="put" formaction="/"></button>
+      </form>
+      <form>
+        <input type="hidden" name="id" value="{{id}}">
+        <button type="submit" formmethod="delete" formaction="/"></button>
+      </form>
+      </td>
+    </tr>
+  {{/each}}
+</table>
+
+<form>
+
+</form>
+
+<br>
+<button type="submit" formmethod="post" formaction="/reset">Reset Database</button>
