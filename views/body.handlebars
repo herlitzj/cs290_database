@@ -58,15 +58,20 @@
 
 <h3>Add a row</h3>
 <form>
-  <input type="text" name="name" value="name">
-  <input type="number" name="reps" value="reps">
-  <input type="text" name="weight" value="weight">
-  <input type="date" name="date" value="date">
+  <p><strong>Name</strong></p><br>
+  <input type="text" name="name"><br>
+  <p><strong>Reps:</strong></p><br>
+  <input type="number" name="reps"><br>
+  <p><strong>Weight:</strong></p><br>
+  <input type="text" name="weight"><br>
+  <p><strong>Date:</strong></p><br>
+  <input type="date" name="date"><br>
+  <p><strong>LBS?</strong></p><br>
   <select name="lbs">
     <option value='true'>lbs</option>
     <option value='false'>kg</option>
   </select>
-  <button type="submit" formmethod="post" formaction="/">Add</button>
+  <input type="submit" value="submit">
 </form>
 
 <br>
