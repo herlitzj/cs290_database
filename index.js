@@ -58,9 +58,6 @@ app.put('/',function (req, res, next){
 
 app.post('/',function (req, res, next){
   var payload = {};
-  var sql = "SELECT * FROM ?? WHERE ?? = ?";
-  var inserts = ['users', 'id', userId];
-  sql = mysql.format(sql, inserts);
   pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?",
         [req.query.name, 
         req.query.reps, 
