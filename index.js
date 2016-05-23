@@ -48,7 +48,7 @@ app.put('/',function (req, res, next){
         req.body.id],
         function(err, result){
         if(err){
-          next(err);
+          next("THERE WAS AN ERROR", err);
           return;
         }
         payload.results = "Updated " + result.changedRows + " rows.";
