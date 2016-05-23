@@ -58,12 +58,15 @@ app.put('/',function (req, res, next){
 
 app.post('/',function (req, res, next){
   var payload = {};
-  pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?",
-        [req.query.name, 
+  var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?";
+  var values = [req.query.name, 
         req.query.reps, 
         req.query.weight,
         req.query.date,
-        req.query.lbs],
+        req.query.lbs];
+  sql = sql.format(sql, values);
+  console.log("SQL: ", sql)
+  pool.query(sql,
         function(err, result){
             if(err){
                 next(err);
