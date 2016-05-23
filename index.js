@@ -61,7 +61,7 @@ app.put('/',function (req, res){
 
 app.post('/',function (req, res){
   var payload = {};
-  var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?,?,?,?,?";
+  var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?,?,?,?,?)";
   var values = [req.body.name, 
                 req.body.reps, 
                 req.body.weight,
