@@ -22,8 +22,7 @@ app.get('/',function (req, res, next){
       next(err);
       return;
     }
-    payload.results = JSON.stringify(rows);
-    payload.rows = result.rows;
+    payload.rows = rows;
     res.render('body', payload);
   });
 });
