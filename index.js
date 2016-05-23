@@ -41,7 +41,7 @@ app.put('/',function (req, res, next){
         req.query.reps || curVals.reps, 
         req.query.weight || curVals.weight,
         req.query.date || curVals.date,
-        req.query.lbs === "lbs" || curVals.lbs, 
+        req.query.lbs || curVals.lbs, 
         req.query.id],
         function(err, result){
         if(err){
@@ -58,12 +58,15 @@ app.put('/',function (req, res, next){
 
 app.post('/',function (req, res, next){
   var payload = {};
-  pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?,?,?,?,?)",
+  var sql = "SELECT * FROM ?? WHERE ?? = ?";
+  var inserts = ['users', 'id', userId];
+  sql = mysql.format(sql, inserts);
+  pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?",
         [req.query.name, 
         req.query.reps, 
         req.query.weight,
         req.query.date,
-        req.query.lbs === "lbs"],
+        req.query.lbs],
         function(err, result){
             if(err){
                 next(err);
