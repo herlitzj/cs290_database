@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 //DB CONNECTION
 var mysql = require('mysql');
