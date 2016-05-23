@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', bindButtons);
 
+console.log("script loaded");
+
 function bindButtons(){  
   document.getElementById('postSubmit').addEventListener('click', function(event) {
+    console.log("POST BUTTON CLICKED");
     var req = new XMLHttpRequest();
     var formData = {
       'name': document.getElementById('postName').value,
