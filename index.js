@@ -75,7 +75,7 @@ app.post('/',function (req, res, next){
   });
 });
 
-app.get('/reset', function (req, res, next){
+app.post('/reset', function (req, res, next){
     console.log("RESETTING DATABASE")
   var payload = {};
   pool.query("DROP TABLE IF EXISTS workouts", function(err){
