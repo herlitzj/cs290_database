@@ -29,7 +29,7 @@ app.get('/',function (req, res, next){
 
 app.put('/',function (req, res, next){
   var payload = {};
-  pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], function(err, result){
+  pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
     if(err){
       next(err);
       return;
@@ -37,12 +37,12 @@ app.put('/',function (req, res, next){
     if(result.length == 1){
       var curVals = result[0];
       pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=?  WHERE id=? ",
-        [req.query.name || curVals.name, 
-        req.query.reps || curVals.reps, 
-        req.query.weight || curVals.weight,
-        req.query.date || curVals.date,
-        req.query.lbs || curVals.lbs, 
-        req.query.id],
+        [req.body.name || curVals.name, 
+        req.body.reps || curVals.reps, 
+        req.body.weight || curVals.weight,
+        req.body.date || curVals.date,
+        req.body.lbs || curVals.lbs, 
+        req.body.id],
         function(err, result){
         if(err){
           next(err);
@@ -59,15 +59,14 @@ app.put('/',function (req, res, next){
 app.post('/',function (req, res, next){
   var payload = {};
   var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?";
-  var values = [req.query.name, 
-        req.query.reps, 
-        req.query.weight,
-        req.query.date,
-        req.query.lbs];
+  var values = [req.body.name, 
+                req.body.reps, 
+                req.body.weight,
+                req.body.date,
+                req.body.lbs];
   sql = sql.format(sql, values);
   console.log("SQL: ", sql)
-  pool.query(sql,
-        function(err, result){
+  pool.query(sql, function(err, result){
             if(err){
                 next(err);
             return;
