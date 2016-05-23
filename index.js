@@ -58,7 +58,7 @@ app.put('/',function (req, res, next){
 
 app.post('/',function (req, res, next){
   var payload = {};
-  pool.query("INSERT INTO workouts ('name', 'reps', 'weight', 'date', 'lbs') VALUES (?,?,?,?,?)",
+  pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?,?,?,?,?)",
         [req.query.name, 
         req.query.reps, 
         req.query.weight,
