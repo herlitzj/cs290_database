@@ -18,11 +18,11 @@ var pool = mysql.createPool({
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/',function (req, res, next){
+app.get('/',function (req, res){
   var payload = {};
   pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
-      next(err);
+      console.log("GET ERROR: ", err);
       return;
     }
     payload.rows = rows;
@@ -30,7 +30,7 @@ app.get('/',function (req, res, next){
   });
 });
 
-app.put('/',function (req, res, next){
+app.put('/',function (req, res){
   var payload = {};
   pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
     if(err){
@@ -48,7 +48,7 @@ app.put('/',function (req, res, next){
         req.body.id],
         function(err, result){
         if(err){
-          next("THERE WAS AN ERROR", err);
+          console.log("PUT ERROR: ", err);
           return;
         }
         payload.results = "Updated " + result.changedRows + " rows.";
@@ -59,7 +59,7 @@ app.put('/',function (req, res, next){
   });
 });
 
-app.post('/',function (req, res, next){
+app.post('/',function (req, res){
   console.log("REQ: ", req);
   var payload = {};
   var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?";
@@ -72,7 +72,7 @@ app.post('/',function (req, res, next){
   console.log("SQL: ", sql)
   pool.query(sql, function(err, result){
             if(err){
-                next(err);
+                console.log("POST ERROR: ", err);
             return;
     }
     payload.results = "Inserted id " + result.insertId;
@@ -81,7 +81,7 @@ app.post('/',function (req, res, next){
   });
 });
 
-app.post('/reset', function (req, res, next){
+app.post('/reset', function (req, res){
     console.log("RESETTING DATABASE")
   var payload = {};
   pool.query("DROP TABLE IF EXISTS workouts", function(err){
@@ -101,7 +101,7 @@ app.post('/reset', function (req, res, next){
 });
 
 app.use(function (err, req, res, next) {
-  console.log(err);
+  console.log("THERE WAS AN ERROR: ", err);
   res.status(500).send('Internal Server Error');
 })
 
