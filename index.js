@@ -1,7 +1,10 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = process.env.PORT || 3000;
+
+app.use(bodyParser.json);
 
 //DB CONNECTION
 var mysql = require('mysql');
