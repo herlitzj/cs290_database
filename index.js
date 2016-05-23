@@ -57,7 +57,7 @@ app.put('/',function (req, res, next){
 });
 
 app.post('/',function (req, res, next){
-  console.log("REQ: ", JSON.stringify(req));
+  console.log("REQ: ", req);
   var payload = {};
   var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?";
   var values = [req.body.name, 
