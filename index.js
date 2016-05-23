@@ -60,7 +60,6 @@ app.put('/',function (req, res){
 });
 
 app.post('/',function (req, res){
-  console.log("IM IN THE POST")
   var payload = {};
   var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES ?";
   var values = [req.body.name, 
@@ -68,8 +67,9 @@ app.post('/',function (req, res){
                 req.body.weight,
                 req.body.date,
                 req.body.lbs];
+  sql = mysql.format(sql, values);
   console.log("SQL: ", sql)
-  pool.query(sql, values, function(err, result){
+  pool.query(sql, function(err, result){
             if(err){
                 console.log("POST ERROR: ", err);
             return;
