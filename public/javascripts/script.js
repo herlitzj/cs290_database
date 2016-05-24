@@ -9,10 +9,10 @@ $(window).load(function() {
 });
 
 
-function logYourself() {
-  console.log("LOADED");
-};
-window.onload = logYourself;
+// function logYourself() {
+//   console.log("LOADED");
+// };
+// window.onload = logYourself;
 
 
 // function bindButtons(){  
