@@ -31,8 +31,8 @@ var loadHandlebars = function(data) {
   console.log(data);
   var workoutData = JSON.parse(data);
   var blankTemplate = document.getElementById("handlebars-template").textContent;
-  var compiledTemplate = Handlebars.compile(Source);
-  var loadedTemplate = Template(workoutData);
+  var compiledTemplate = Handlebars.compile(blankTemplate);
+  var loadedTemplate = compiledTemplate(workoutData);
   document.getElementById("handlebars-insert").append(loadedTemplate);
 }
 
