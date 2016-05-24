@@ -37,6 +37,7 @@ var addRow = function() {
     'lbs': document.getElementById('postLbs').value,
   }
   var payload = {text: formData};
+  console.log(payload);
   req.open('POST', '/', true);
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
