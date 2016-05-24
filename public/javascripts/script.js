@@ -3,7 +3,7 @@ function readyPage() {
   document.getElementById('addRow').onclick = addRow;
   console.log("LOADED");
 };
-window.onload = bindButtons;
+window.onload = readyPage;
 
 
 // function bindButtons(){  
