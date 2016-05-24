@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 app.use('/public', express.static(__dirname + '/public'));
 
 //DB CONNECTION
