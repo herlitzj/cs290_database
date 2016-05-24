@@ -44,6 +44,13 @@ var addRow = function() {
 
 var get = function(callback) {
   var req = new XMLHttpRequest();
+  req.onreadystatechange = function(data) {
+    if (req.readyState == 4 && req.status == 200) {
+      callback(data);
+    } else {
+      console.log("Error: ", req.status)
+    }
+  };
   req.open('GET', '/workouts', true);
   req.send();
 }
