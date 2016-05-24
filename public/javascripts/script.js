@@ -39,7 +39,7 @@ var addRow = function() {
     'date': document.getElementById('postDate').value,
     'lbs': document.getElementById('postLbs').value,
   }
-  post(formData loadHandlebars);
+  post(formData, loadHandlebars);
 }
 
 var get = function(callback) {
