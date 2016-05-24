@@ -5,6 +5,7 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded());
+app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/views/style.css'));
 
 //DB CONNECTION
