@@ -1,6 +1,6 @@
-window.addEventListener('load', function() {
-  console.log("SCRIPT LOADED")
-}, false);
+// window.addEventListener('load', function() {
+//   console.log("SCRIPT LOADED")
+// }, false);
 
 function logYourself() {
   console.log("LOADED");
