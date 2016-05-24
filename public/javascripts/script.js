@@ -25,7 +25,7 @@ window.onload = logYourself;
 // }
 
 
-function addRow() {
+var addRow = function() {
   console.log("adding row");
   var req = new XMLHttpRequest();
   var formData = {
