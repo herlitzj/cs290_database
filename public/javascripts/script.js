@@ -51,8 +51,7 @@ var get = function(callback) {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
     if (req.readyState == 4 && req.status == 200) {
-      var response = res;
-      callback(response);
+      callback(data.target.responseText);
     };
   };
   req.open('GET', '/workouts', true);
