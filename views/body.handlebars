@@ -4,7 +4,7 @@
     </div>
   {{/if}}
 
-<script id="handlebars" type="text/x-handlebars-template">
+<script id="handlebars-template" type="text/x-handlebars-template">
   <table>
     <tr>
       <th id='table_name' colspan='6'>Workout Tracker</th>
@@ -37,6 +37,8 @@
     {{/each}}
   </table>
 </script>
+
+<div id='handlebars-insert'></div>
 
   <h3>Add a row</h3>
   <form method="post" action="/" id="postForm">

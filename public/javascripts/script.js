@@ -29,6 +29,11 @@ window.onload = readyPage;
 
 var loadHandlebars = function(data) {
   console.log(data);
+  var workoutData = JSON.parse(data);
+  var blankTemplate = document.getElementById("handlebars-template").textContent;
+  var compiledTemplate = Handlebars.compile(Source);
+  var loadedTemplate = Template(workoutData);
+  document.getElementById("handlebars-insert").append(loadedTemplate);
 }
 
 var addRow = function() {
@@ -46,7 +51,8 @@ var get = function(callback) {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
     if (req.readyState == 4 && req.status == 200) {
-      callback(data);
+      var response = data.response
+      callback(response);
     } else {
       console.log("Error: ", req.status)
     }
