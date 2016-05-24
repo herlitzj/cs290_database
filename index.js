@@ -17,6 +17,8 @@ var pool = mysql.createPool({
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+app.use('views/script.js', express.static(path.join(__dirname, 'views/script.js')));
+app.use('views/style.css', express.static(path.join(__dirname, 'views/style.css')));
 
 app.get('/',function (req, res){
   var payload = {};
