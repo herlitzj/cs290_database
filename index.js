@@ -19,7 +19,11 @@ var pool = mysql.createPool({
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/',function (req, res){
+app.get('/', function (req, res){
+  res.render('body');
+})
+
+app.get('/workouts',function (req, res){
   var payload = {};
   pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
@@ -27,11 +31,11 @@ app.get('/',function (req, res){
       return;
     }
     payload.rows = rows;
-    res.render('body', payload);
+    res.send(payload);
   });
 });
 
-app.put('/',function (req, res){
+app.put('/workouts',function (req, res){
   var payload = {};
   pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
     if(err){
@@ -55,13 +59,13 @@ app.put('/',function (req, res){
         console.log(result);
         payload.results = "Updated " + result.changedRows + " rows.";
         payload.rows = result.changedRows;
-        res.render('body', payload);
+        res.send(payload);
       });
     }
   });
 });
 
-app.post('/',function (req, res){
+app.post('/workouts',function (req, res){
   var payload = {};
   var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?,?,?,?,?)";
   var values = [req.body.name, 
@@ -79,7 +83,7 @@ app.post('/',function (req, res){
   }
   payload.results = "Inserted id " + result.insertId;
   payload.rows = result.rows;
-  res.render('body', payload);
+  res.send(payload);
   });
 });
 
@@ -97,7 +101,7 @@ app.post('/reset', function (req, res){
     pool.query(createString, function(err){
       if(err) console.log(err);
       payload.results = "Table reset";
-      res.render('body', payload);
+      res.send(payload);
     })
   });
 });

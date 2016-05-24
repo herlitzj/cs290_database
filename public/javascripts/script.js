@@ -44,14 +44,14 @@ var addRow = function() {
 
 var get = function(callback) {
   var req = new XMLHttpRequest();
-  req.open('GET', '/', true);
+  req.open('GET', '/workouts', true);
   req.send();
 }
 
 var post = function(data, callback) {
   var req = new XMLHttpRequest();
   var payload = data;
-  req.open('POST', '/', true);
+  req.open('POST', '/workouts', true);
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
 }
