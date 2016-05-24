@@ -33,6 +33,8 @@ var loadHandlebars = function(data) {
   var blankTemplate = document.getElementById("handlebars-template").textContent;
   var compiledTemplate = Handlebars.compile(blankTemplate);
   var loadedTemplate = compiledTemplate(workoutData);
+  console.log("CT: ", compiledTemplate);
+  console.log("LT: ", loadedTemplate);
   document.getElementById("handlebars-insert").innerHTML = loadedTemplate;
 }
 
