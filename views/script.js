@@ -1,4 +1,7 @@
-// document.addEventListener('DOMContentLoaded', bindButtons);
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById("addRow").onclick = addRow();
+  
+});
 
 
 // function bindButtons(){  
