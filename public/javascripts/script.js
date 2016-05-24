@@ -51,7 +51,7 @@ var get = function(callback) {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
     if (req.readyState == 4 && req.status == 200) {
-      var response = data.response
+      var response = data.responseText;
       callback(response);
     } else {
       console.log("Error: ", req.status)
