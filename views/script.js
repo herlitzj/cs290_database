@@ -1,9 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+$( document ).ready(function() {
   console.log("SCRIPT LOADED");
   document.getElementById("addRow").onclick = addRow();
-  
 });
-
 
 // function bindButtons(){  
 //   console.log("script loaded");
