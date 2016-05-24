@@ -1,7 +1,8 @@
-function logYourself() {
+function bindButtons() {
   console.log("LOADED");
+  window.getElementById('addRow').onclick = addRow;
 };
-window.onload = logYourself;
+window.onload = bindButtons;
 
 
 // function bindButtons(){  

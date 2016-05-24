@@ -1,21 +1,3 @@
-<script type="text/javascript">
-  var addRow = function() {
-  console.log("adding row");
-  var req = new XMLHttpRequest();
-  var formData = {
-    'name': document.getElementById('postName').value,
-    'reps': document.getElementById('postReps').value,
-    'weight': document.getElementById('postWeight').value,
-    'date': document.getElementById('postDate').value,
-    'lbs': document.getElementById('postLbs').value,
-  }
-  var payload = {text: formData};
-  req.open('POST', '/', true);
-  req.setRequestHeader('Content-Type', 'application/json');
-  req.send(JSON.stringify(payload));
-}
-</script>
-
 {{#if results}}
   <div>
     <h2 class="warning">{{ results }}</h2>
@@ -69,7 +51,7 @@
     <option value='true'>lbs</option>
     <option value='false'>kg</option>
   </select><br>
-  <input type="button" value="Add Row" id='addRow' onclick="addRow();">
+  <input type="button" value="Add Row" id='addRow'/>
 </form>
 
 <br>
