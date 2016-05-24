@@ -2,17 +2,17 @@
 //   console.log("SCRIPT LOADED")
 // }, false);
 
-$(window).load(function() {
-  function() {
-    console.log("LOADED");
-  };
-});
+// $(window).load(function() {
+//   function() {
+//     console.log("LOADED");
+//   };
+// });
 
 
-// function logYourself() {
-//   console.log("LOADED");
-// };
-// window.onload = logYourself;
+function logYourself() {
+  console.log("LOADED");
+};
+window.onload = logYourself;
 
 
 // function bindButtons(){  
