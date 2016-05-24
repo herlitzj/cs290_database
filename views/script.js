@@ -2,6 +2,12 @@ window.addEventListener('load', function() {
   console.log("SCRIPT LOADED")
 }, false);
 
+function logYourself() {
+  console.log("LOADED");
+};
+window.onload = logYourself;
+
+
 // function bindButtons(){  
 //   console.log("script loaded");
 //   document.getElementById('postSubmit').addEventListener('click', function(event) {
