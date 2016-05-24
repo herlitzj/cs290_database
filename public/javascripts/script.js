@@ -1,6 +1,7 @@
-function bindButtons() {
-  console.log("LOADED");
+function readyPage() {
+  get(loadHandlebars);
   document.getElementById('addRow').onclick = addRow;
+  console.log("LOADED");
 };
 window.onload = bindButtons;
 
@@ -26,9 +27,11 @@ window.onload = bindButtons;
 // }
 
 
+var loadHandlebars = function(data) {
+  console.log(data);
+}
+
 var addRow = function() {
-  console.log("adding row");
-  var req = new XMLHttpRequest();
   var formData = {
     'name': document.getElementById('postName').value,
     'reps': document.getElementById('postReps').value,
@@ -36,8 +39,18 @@ var addRow = function() {
     'date': document.getElementById('postDate').value,
     'lbs': document.getElementById('postLbs').value,
   }
-  var payload = formData;
-  console.log(payload);
+  post(formData loadHandlebars);
+}
+
+var get = function(callback) {
+  var req = new XMLHttpRequest();
+  req.open('GET', '/', true);
+  req.send();
+}
+
+var post = function(data, callback) {
+  var req = new XMLHttpRequest();
+  var payload = data;
   req.open('POST', '/', true);
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
