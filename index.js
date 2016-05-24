@@ -5,6 +5,7 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded());
+app.use(express.static(__dirname + '/views'));
 
 //DB CONNECTION
 var mysql = require('mysql');
@@ -17,11 +18,6 @@ var pool = mysql.createPool({
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-
-app.configure(function(){
-  app.use('views/script.js', express.static(path.join(__dirname, 'views/script.js')));
-  app.use('views/style.css', express.static(path.join(__dirname, 'views/style.css')));
-});
 
 app.get('/',function (req, res){
   var payload = {};
