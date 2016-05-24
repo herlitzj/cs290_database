@@ -5,8 +5,7 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded());
-app.use(express.static(__dirname + '/javascripts'));
-app.use('/public/stylesheets', express.static(__dirname + '/public/stylesheets'));
+app.use('/public', express.static(__dirname + '/public'));
 
 //DB CONNECTION
 var mysql = require('mysql');
