@@ -1,6 +1,6 @@
 function bindButtons() {
   console.log("LOADED");
-  window.getElementById('addRow').onclick = addRow;
+  document.getElementById('addRow').onclick = addRow;
 };
 window.onload = bindButtons;
 
