@@ -1,60 +1,62 @@
-{{#if results}}
-  <div>
-    <h2 class="warning">{{ results }}</h2>
-  </div>
-{{/if}}
+<script id="handlebars" type="text/x-handlebars-template">
+  {{#if results}}
+    <div>
+      <h2 class="warning">{{ results }}</h2>
+    </div>
+  {{/if}}
 
-<table>
-  <tr>
-    <th id='table_name' colspan='6'>Workout Tracker</th>
-  </tr>
-  <tr>
-    <th>Name</th>
-    <th>Reps</th>
-    <th>Weight</th>
-    <th>Date</th>
-    <th>LBS/KG</th>
-    <th>Edit</th>
-  </tr>
-  {{#each rows}}
+  <table>
     <tr>
-      <form>
-        <td>{{name}}</td>
-        <td>{{reps}}</td>
-        <td>{{weight}}</td>
-        <td>{{date}}</td>
-        <td>{{lbs}}</td>
-        <td>
-        <button type="submit" formmethod="put" formaction="/"></button>
-      </form>
-      <form>
-        <input type="hidden" name="id" value="{{id}}">
-        <button type="submit" formmethod="delete" formaction="/"></button>
-      </form>
-      </td>
+      <th id='table_name' colspan='6'>Workout Tracker</th>
     </tr>
-  {{/each}}
-</table>
+    <tr>
+      <th>Name</th>
+      <th>Reps</th>
+      <th>Weight</th>
+      <th>Date</th>
+      <th>LBS/KG</th>
+      <th>Edit</th>
+    </tr>
+    {{#each rows}}
+      <tr>
+        <form>
+          <td>{{name}}</td>
+          <td>{{reps}}</td>
+          <td>{{weight}}</td>
+          <td>{{date}}</td>
+          <td>{{lbs}}</td>
+          <td>
+          <button type="submit" formmethod="put" formaction="/"></button>
+        </form>
+        <form>
+          <input type="hidden" name="id" value="{{id}}">
+          <button type="submit" formmethod="delete" formaction="/"></button>
+        </form>
+        </td>
+      </tr>
+    {{/each}}
+  </table>
 
-<h3>Add a row</h3>
-<form method="post" action="/" id="postForm">
-  <p><strong>Name:</strong></p>
-  <input type="text" name="name" id="postName"/><br>
-  <p><strong>Reps:</strong></p>
-  <input type="number" name="reps" id="postReps"/><br>
-  <p><strong>Weight:</strong></p>
-  <input type="text" name="weight" id="postWeight"/><br>
-  <p><strong>Date:</strong></p>
-  <input type="date" name="date" id="postDate"/><br>
-  <p><strong>LBS?</strong></p>
-  <select name="lbs" id="postLbs"/>
-    <option value='true'>lbs</option>
-    <option value='false'>kg</option>
-  </select><br>
-  <input type="button" value="Add Row" id='addRow'/>
-</form>
+  <h3>Add a row</h3>
+  <form method="post" action="/" id="postForm">
+    <p><strong>Name:</strong></p>
+    <input type="text" name="name" id="postName"/><br>
+    <p><strong>Reps:</strong></p>
+    <input type="number" name="reps" id="postReps"/><br>
+    <p><strong>Weight:</strong></p>
+    <input type="text" name="weight" id="postWeight"/><br>
+    <p><strong>Date:</strong></p>
+    <input type="date" name="date" id="postDate"/><br>
+    <p><strong>LBS?</strong></p>
+    <select name="lbs" id="postLbs"/>
+      <option value='true'>lbs</option>
+      <option value='false'>kg</option>
+    </select><br>
+    <input type="button" value="Add Row" id='addRow'/>
+  </form>
 
-<br>
-<form>
-<button type="submit" formmethod="post" formaction="/reset" onclick="return confirm('This will delete all data. Are you sure you wish to continue?')">Reset Database</button>
-</form>
+  <br>
+  <form>
+  <button type="submit" formmethod="post" formaction="/reset" onclick="return confirm('This will delete all data. Are you sure you wish to continue?')">Reset Database</button>
+  </form>
+</script>
