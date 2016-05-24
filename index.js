@@ -6,7 +6,6 @@ var port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded());
 app.use('/views', express.static(__dirname + '/views'));
-// app.use(express.static(__dirname + '/views/style.css'));
 
 //DB CONNECTION
 var mysql = require('mysql');
