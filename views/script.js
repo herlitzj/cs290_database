@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  console.log("SCRIPT LOADED");
   document.getElementById("addRow").onclick = addRow();
   
 });
