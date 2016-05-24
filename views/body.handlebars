@@ -1,10 +1,10 @@
-<script id="handlebars" type="text/x-handlebars-template">
   {{#if results}}
     <div>
       <h2 class="warning">{{ results }}</h2>
     </div>
   {{/if}}
 
+<script id="handlebars" type="text/x-handlebars-template">
   <table>
     <tr>
       <th id='table_name' colspan='6'>Workout Tracker</th>
@@ -36,6 +36,7 @@
       </tr>
     {{/each}}
   </table>
+</script>
 
   <h3>Add a row</h3>
   <form method="post" action="/" id="postForm">
@@ -59,4 +60,3 @@
   <form>
   <button type="submit" formmethod="post" formaction="/reset" onclick="return confirm('This will delete all data. Are you sure you wish to continue?')">Reset Database</button>
   </form>
-</script>
