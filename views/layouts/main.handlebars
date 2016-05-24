@@ -3,7 +3,12 @@
 <head>
     <title>Database and UI Interactions</title>
     <link href="/public/css/style.css" type="text/css" rel="stylesheet" />
-    <script type='text/javascript' src"/public/scripts/script.js"></script>
+    <script>
+        function logYourself() {
+          console.log("LOADED");
+        };
+        window.onload = logYourself;
+    </script>
 </head>
 <body>
     {{{body}}}
