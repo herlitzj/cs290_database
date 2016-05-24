@@ -36,7 +36,7 @@ var addRow = function() {
     'date': document.getElementById('postDate').value,
     'lbs': document.getElementById('postLbs').value,
   }
-  var payload = {text: formData};
+  var payload = formData;
   console.log(payload);
   req.open('POST', '/', true);
   req.setRequestHeader('Content-Type', 'application/json');
