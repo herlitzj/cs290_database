@@ -52,6 +52,7 @@ app.put('/',function (req, res){
           console.log("PUT ERROR: ", err);
           return;
         }
+        console.log(result);
         payload.results = "Updated " + result.changedRows + " rows.";
         payload.rows = result.changedRows;
         res.render('body', payload);
