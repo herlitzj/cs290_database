@@ -72,13 +72,14 @@ app.post('/',function (req, res){
   sql = mysql.format(sql, values);
   console.log("SQL: ", sql)
   pool.query(sql, function(err, result){
-            if(err){
-                console.log("POST ERROR: ", err);
-            return;
-    }
-    payload.results = "Inserted id " + result.insertId;
-    payload.rows = result.rows;
-    res.render('body', payload);
+    console.log(result);
+    if(err){
+        console.log("POST ERROR: ", err);
+    return;
+  }
+  payload.results = "Inserted id " + result.insertId;
+  payload.rows = result.rows;
+  res.render('body', payload);
   });
 });
 
