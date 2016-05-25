@@ -103,9 +103,8 @@ app.delete('/workouts', function (req, res) {
       }
       payload.rows = rows;
       res.send(payload);
-      }
-    })
-  })
+    });
+  });
 })
 
 app.post('/reset', function (req, res){
