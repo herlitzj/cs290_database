@@ -78,7 +78,6 @@ var injectEditForm = function(rowId) {
 }
 
 var deleteRow = function(data, callback) {
-  console.log("DLETE ROW: ", data);
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
     if (req.readyState == 4 && req.status == 200) {
@@ -96,7 +95,7 @@ var formatData = function(data) {
     else return "KG";
   })
 
-  var formatDate = formatWeight.row.map(function(row) {
+  var formatDate = formatWeight.rows.map(function(row) {
     var dateMatch = row.date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
     return dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
   })
