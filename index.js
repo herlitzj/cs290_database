@@ -79,12 +79,12 @@ app.post('/workouts',function (req, res){
   console.log("SQL: ", sql)
   pool.query(sql, function() {
     pool.query("SELECT * FROM workouts;", function(err, rows, fields){
-      console.log(result);
+      console.log(rows);
       if(err){
           console.log("POST ERROR: ", err);
       return;
     }
-    payload.rows = result;
+    payload.rows = rows;
     res.send(payload);
     });
   });
