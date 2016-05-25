@@ -168,7 +168,7 @@ var handlebarsTemplate = '<table>'+
       '<label for="PostLbs">lbs?</label>'+
       '<select name="lbs" id="editLbs"/>'+
         '<option value=0 selected={{#if lbs}}"selected"{{/if}}>lbs</option>'+
-        '<option value=1 selected={{#unless lbs}}"selected"{{/unless}}>kg</option>'+
+        '<option value=1 selected={{#if lbs}}"selected"{{/if}}>kg</option>'+
       '</select><br>'+
       '<input type="hidden" name="id" value="{{editData.id}}" id="editId"/><br>'+
       '<input type="button" value="Edit Row" id="editRow" />'+
