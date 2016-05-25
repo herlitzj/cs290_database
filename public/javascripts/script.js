@@ -75,6 +75,7 @@ var injectEditForm = function(rowId) {
   console.log("DATA: ", editData);
   console.log("TEMPLATE: ", loadedTemplate);
   document.getElementById("edit-template").innerHTML = loadedTemplate;
+  document.getElementById("editRow").onclick = editRow;
 }
 
 var deleteRow = function(data, callback) {
@@ -149,5 +150,5 @@ var handlebarsTemplate = '<table>'+
         '<option value="true">lbs</option>'+
         '<option value="false">kg</option>'+
       '</select><br>'+
-      '<input type="button" value="Add Row" id="editRow" onclick"editRow()"/>'+
+      '<input type="button" value="Edit Row" id="editRow" />'+
     '</form>'
