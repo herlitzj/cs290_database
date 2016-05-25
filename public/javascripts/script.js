@@ -77,19 +77,15 @@ var post = function(data, callback) {
 
 var deleteRow = function(data, callback) {
   console.log("DLETE ROW: ", data);
-  var formData = {
-    'id': data
-  }
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
     if (req.readyState == 4 && req.status == 200) {
       callback(data.target.responseText);
     };
   };
-  var payload = data;
   req.open('POST', '/workouts/' + data, true);
   req.setRequestHeader('Content-Type', 'application/json');
-  req.send(JSON.stringify(payload));
+  req.send();
 }
 
 var handlebarsTemplate = '<table>'+
