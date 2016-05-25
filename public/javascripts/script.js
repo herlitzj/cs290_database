@@ -70,35 +70,34 @@ var post = function(data, callback) {
   req.send(JSON.stringify(payload));
 }
 
-var handlebarsTemplate = '<table>
-    <tr>
-      <th id="table_name" colspan="6">Workout Tracker</th>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <th>Reps</th>
-      <th>Weight</th>
-      <th>Date</th>
-      <th>LBS/KG</th>
-      <th>Edit</th>
-    </tr>
-      <div>
-        <tr>
-          <form>
-            <td>{{name}}</td>
-            <td>{{reps}}</td>
-            <td>{{weight}}</td>
-            <td>{{date}}</td>
-            <td>{{lbs}}</td>
-            <td>
-            <button type="submit" formmethod="put" formaction="/"></button>
-          </form>
-          <form>
-            <input type="hidden" name="id" value="{{id}}">
-            <button type="submit" formmethod="delete" formaction="/"></button>
-          </form>
-          </td>
-        </tr>
-    </div>
-  </table>
-'
+var handlebarsTemplate = '<table>'+
+    '<tr>'+
+      '<th id="table_name" colspan="6">Workout Tracker</th>'+
+    '</tr>'+
+    '<tr>'+
+      '<th>Name</th>'+
+      '<th>Reps</th>'+
+      '<th>Weight</th>'+
+      '<th>Date</th>'+
+      '<th>LBS/KG</th>'+
+      '<th>Edit</th>'+
+    '</tr>'+
+      '{{#each rows}}'+
+        '<tr>'+
+          '<form>'+
+            '<td>{{name}}</td>'+
+            '<td>{{reps}}</td>'+
+            '<td>{{weight}}</td>'+
+            '<td>{{date}}</td>'+
+            '<td>{{lbs}}</td>'+
+            '<td>'+
+            '<button type="submit" formmethod="put" formaction="/"></button>'+
+          '</form>'+
+          '<form>'+
+            '<input type="hidden" name="id" value="{{id}}">'+
+            '<button type="submit" formmethod="delete" formaction="/"></button>'+
+          '</form>'+
+          '</td>'+
+        '</tr>'+
+    '{{/each}}'+
+  '</table>'
