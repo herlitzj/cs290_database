@@ -70,7 +70,7 @@ var put = function(data, callback) {
     };
   };
   var payload = data;
-  req.open('PUT', '/workouts', true);
+  req.open('PUT', '/workouts/' + data.id, true);
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
 }
