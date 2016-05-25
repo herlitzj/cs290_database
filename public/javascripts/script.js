@@ -91,17 +91,16 @@ var deleteRow = function(data, callback) {
 
 var formatData = function(data) {
   console.log("RAW: ", data)
-  var formatWeight = data.rows.map(function(row) {
-    if (row.weight === 0) return "LBS";
-    else return "KG";
-  })
-  console.log("W: ", formatWeight);
-  var formatDate = formatWeight.map(function(row) {
+  data.rows.forEach(function(row) {
+    if(row.weight === 0) row.weight = "LBS";
+    else row.weight = "KG";
+
     var dateMatch = row.date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
-    return dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
+    row.date = dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
   })
-  console.log("DATE: ", formatDate)
-  return {rows: formatDate}
+  console.log("AFTER: ", data);
+
+  return data;
 }
 
 var handlebarsTemplate = '<table>'+
