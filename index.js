@@ -39,7 +39,7 @@ app.get('/workouts',function (req, res){
 
 app.put('/workouts/:id',function (req, res){
   var payload = {};
-  pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
+  pool.query("SELECT * FROM workouts WHERE id=?", [req.params.id], function(err, result){
     if(err){
       next(err);
       return;
