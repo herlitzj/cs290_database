@@ -166,7 +166,7 @@ var handlebarsTemplate = '<table>'+
       '<label for="postDate">Date</label>'+
       '<input type="date" name="date" value="{{editData.date}}" id="editDate"/><br>'+
       '<label for="PostLbs">lbs?</label>'+
-      '<select name="lbs" value="{{editData.lbs == "LBS"}}" id="editLbs"/>'+
+      '<select name="lbs" value={{#if editData.lbs == "LBS"}}0{{else}}1{{/if}} id="editLbs"/>'+
         '<option value=0>lbs</option>'+
         '<option value=1>kg</option>'+
       '</select><br>'+
