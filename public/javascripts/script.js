@@ -95,12 +95,12 @@ var formatData = function(data) {
     else return "KG";
   })
 
-  var formatDate = formatWeight.rows.map(function(row) {
+  var formatDate = formatWeight.map(function(row) {
     var dateMatch = row.date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
     return dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
   })
 
-  return formatDate
+  return {rows: formatDate}
 }
 
 var handlebarsTemplate = '<table>'+
