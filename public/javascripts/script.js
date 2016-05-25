@@ -29,10 +29,10 @@ window.onload = readyPage;
 
 var loadHandlebars = function(data) {
   console.log(data);
-  var workoutData = JSON.parse(data['rows']);
+  var workoutData = JSON.parse(data);
   var blankTemplate = document.getElementById("handlebars-template").textContent;
   var compiledTemplate = Handlebars.compile(blankTemplate);
-  var loadedTemplate = compiledTemplate({rows: workoutData});
+  var loadedTemplate = compiledTemplate({rows: workoutData["rows"]});
   console.log("D: ", workoutData);
   console.log("BT: ", blankTemplate);
   console.log("CT: ", compiledTemplate);
