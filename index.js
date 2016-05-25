@@ -39,6 +39,14 @@ app.get('/workouts',function (req, res){
 
 app.put('/workouts/:id',function (req, res){
   var payload = {};
+  var sql = "UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=?  WHERE id=? ";
+  var values = [req.body.name || curVals.name, 
+        req.body.reps || curVals.reps, 
+        req.body.weight || curVals.weight,
+        req.body.date || curVals.date,
+        req.body.lbs || curVals.lbs, 
+        req.body.id];
+  sql = mysql.format(sql, values);
   pool.query("SELECT * FROM workouts WHERE id=?", [req.params.id], function(err, result){
     if(err){
       next(err);
@@ -46,24 +54,18 @@ app.put('/workouts/:id',function (req, res){
     }
     if(result.length == 1){
       var curVals = result[0];
-      pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=?  WHERE id=? ",
-        [req.body.name || curVals.name, 
-        req.body.reps || curVals.reps, 
-        req.body.weight || curVals.weight,
-        req.body.date || curVals.date,
-        req.body.lbs || curVals.lbs, 
-        req.body.id],
-        function(err, result){
-        if(err){
-          console.log("PUT ERROR: ", err);
-          return;
+      pool.query(sql, function() {
+        pool.query("SELECT * FROM workouts;", function(err, rows, fields){
+          console.log(rows);
+          if(err){
+            console.log("PUT ERROR: ", err);
+            return;
         }
-        console.log(result);
-        payload.results = "Updated " + result.changedRows + " rows.";
-        payload.rows = result.changedRows;
+        payload.rows = rows;
         res.send(payload);
+        });
       });
-    }
+    };
   });
 });
 
@@ -76,7 +78,6 @@ app.post('/workouts',function (req, res){
                 req.body.date,
                 req.body.lbs];
   sql = mysql.format(sql, values);
-  console.log("SQL: ", sql)
   pool.query(sql, function() {
     pool.query("SELECT * FROM workouts;", function(err, rows, fields){
       console.log(rows);
