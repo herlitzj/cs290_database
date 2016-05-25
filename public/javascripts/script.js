@@ -72,7 +72,7 @@ var post = function(data, callback) {
 }
 
 var injectEditForm = function(rowId) {
-  var row = window.getElementById('row' + rowId);
+  var row = document.getElementById('row' + rowId);
   var editData = {
     name: row[0].textContent,
     reps: row[1].textContent,
