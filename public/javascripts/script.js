@@ -30,7 +30,7 @@ window.onload = readyPage;
 var loadHandlebars = function(data) {
   console.log(data);
   var workoutData = JSON.parse(data);
-  var blankTemplate = document.getElementById("tandlebars-template").textContent;
+  var blankTemplate = handlebarsTemplate;
   var compiledTemplate = Handlebars.compile(blankTemplate);
   var loadedTemplate = compiledTemplate(workoutData);
   console.log("D: ", workoutData);
@@ -69,3 +69,37 @@ var post = function(data, callback) {
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
 }
+
+var handlebarsTemplate = '
+<table>
+    <tr>
+      <th id="table_name" colspan="6">Workout Tracker</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th>Reps</th>
+      <th>Weight</th>
+      <th>Date</th>
+      <th>LBS/KG</th>
+      <th>Edit</th>
+    </tr>
+      <div>
+        <tr>
+          <form>
+            <td>{{name}}</td>
+            <td>{{reps}}</td>
+            <td>{{weight}}</td>
+            <td>{{date}}</td>
+            <td>{{lbs}}</td>
+            <td>
+            <button type="submit" formmethod="put" formaction="/"></button>
+          </form>
+          <form>
+            <input type="hidden" name="id" value="{{id}}">
+            <button type="submit" formmethod="delete" formaction="/"></button>
+          </form>
+          </td>
+        </tr>
+    </div>
+  </table>
+'
