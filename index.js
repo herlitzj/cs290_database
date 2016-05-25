@@ -81,14 +81,32 @@ app.post('/workouts',function (req, res){
     pool.query("SELECT * FROM workouts;", function(err, rows, fields){
       console.log(rows);
       if(err){
-          console.log("POST ERROR: ", err);
-      return;
+        console.log("POST ERROR: ", err);
+        return;
     }
     payload.rows = rows;
     res.send(payload);
     });
   });
 });
+
+app.delete('/workouts', function (req, res) {
+  var payload = {};
+  var sql "DELETE * FROM workouts WHERE id = ?;";
+  var id = req.body.id;
+  sql = mysql.format(sql, values);
+  pool.query(sql, function() {
+    pool.query("SELECT * FROM workouts;", function(err, rows, fields) {
+      if(err){
+        console.log(err);
+        return;
+      }
+      payload.rows = rows;
+      res.send(payload);
+      }
+    })
+  })
+})
 
 app.post('/reset', function (req, res){
     console.log("RESETTING DATABASE")

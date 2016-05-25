@@ -75,6 +75,22 @@ var post = function(data, callback) {
   req.send(JSON.stringify(payload));
 }
 
+var deleteRow = function(data, callback) {
+  var formData = {
+    'id': document.getElementById('postName').value
+  }
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function(data) {
+    if (req.readyState == 4 && req.status == 200) {
+      callback(data.target.responseText);
+    };
+  };
+  var payload = data;
+  req.open('POST', '/workouts', true);
+  req.setRequestHeader('Content-Type', 'application/json');
+  req.send(JSON.stringify(payload));
+}
+
 var handlebarsTemplate = '<table>'+
     '<tr>'+
       '<th id="table_name" colspan="6">Workout Tracker</th>'+
@@ -96,11 +112,10 @@ var handlebarsTemplate = '<table>'+
             '<td>{{date}}</td>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
-            '<button type="submit" formmethod="put" formaction="/"></button>'+
+            '<button type="submit" formmethod="put" formaction="/">Edit</button>'+
           '</form>'+
           '<form>'+
-            '<input type="hidden" name="id" value="{{id}}">'+
-            '<button type="submit" formmethod="delete" formaction="/"></button>'+
+            '<input type="button" value="delete" onclick="deleteRow({{id}})">'+
           '</form>'+
           '</td>'+
         '</tr>'+
