@@ -93,7 +93,7 @@ app.post('/workouts',function (req, res){
 app.post('/workouts/:id', function (req, res) {
   console.log("PARAMS: ", req.params);
   var payload = {};
-  var sql = "DELETE * FROM workouts WHERE id = ?;";
+  var sql = "DELETE FROM workouts WHERE id = ?;";
   var id = req.params.id;
   sql = mysql.format(sql, id);
   pool.query(sql, function() {
