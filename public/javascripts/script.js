@@ -90,9 +90,18 @@ var deleteRow = function(data, callback) {
   req.send();
 }
 
-var formatDate = function(date) {
-  var dateMatch = date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
-  return dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
+var formatData = function(data) {
+  var formatWeight = data.rows.map(function(row) {
+    if (row.weight === 0) return "LBS";
+    else return "KG";
+  })
+
+  var formatDate = formatWeight.row.map(function(row) {
+    var dateMatch = row.date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
+    return dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
+  })
+
+  return formatDate
 }
 
 var handlebarsTemplate = '<table>'+
@@ -113,7 +122,7 @@ var handlebarsTemplate = '<table>'+
             '<td>{{name}}</td>'+
             '<td>{{reps}}</td>'+
             '<td>{{weight}}</td>'+
-            '<td>formatDate({{date}})</td>'+
+            '<td>{{date}}</td>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
             '<input type="button" value="edit" onclick="injectEditForm({{id}})">'+
