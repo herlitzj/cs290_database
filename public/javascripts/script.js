@@ -77,7 +77,7 @@ var post = function(data, callback) {
 
 var deleteRow = function(data, callback) {
   var formData = {
-    'id': data;
+    'id': data
   }
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
