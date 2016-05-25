@@ -64,6 +64,11 @@ var get = function(callback) {
 
 var post = function(data, callback) {
   var req = new XMLHttpRequest();
+  req.onreadystatechange = function(data) {
+    if (req.readyState == 4 && req.status == 200) {
+      callback(data.target.responseText);
+    };
+  };
   var payload = data;
   req.open('POST', '/workouts', true);
   req.setRequestHeader('Content-Type', 'application/json');
