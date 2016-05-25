@@ -82,7 +82,9 @@ var injectEditForm = function(rowId) {
   }
   var blankTemplate = editForm;
   var compiledTemplate = Handlebars.compile(blankTemplate);
-  var loadedTemplate = compiledTemplate(editData);
+  var loadedTemplate = compiledTemplate({editData: editData});
+  console.log("DATA: ", editData);
+  console.log("TEMPLATE: ", loadedTemplate);
   document.getElementById("edit-template").innerHTML = loadedTemplate;
 }
 
