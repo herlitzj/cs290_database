@@ -92,7 +92,7 @@ app.post('/workouts',function (req, res){
 
 app.delete('/workouts', function (req, res) {
   var payload = {};
-  var sql "DELETE * FROM workouts WHERE id = ?;";
+  var sql = "DELETE * FROM workouts WHERE id = ?;";
   var id = req.body.id;
   sql = mysql.format(sql, values);
   pool.query(sql, function() {
