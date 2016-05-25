@@ -30,9 +30,9 @@ window.onload = readyPage;
 var loadHandlebars = function(data) {
   console.log(data);
   var workoutData = JSON.parse(data);
-  var blankTemplate = document.getElementById("handlebars-template").textContent;
+  var blankTemplate = document.getElementById("Handlebars-Template").textContent;
   var compiledTemplate = Handlebars.compile(blankTemplate);
-  var loadedTemplate = compiledTemplate({rows: workoutData["rows"]});
+  var loadedTemplate = compiledTemplate(workoutData);
   console.log("D: ", workoutData);
   console.log("BT: ", blankTemplate);
   console.log("CT: ", compiledTemplate);
