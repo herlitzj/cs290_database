@@ -120,7 +120,7 @@ var handlebarsTemplate = '<table>'+
             '<td>{{date}}</td>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
-            '<input type="button" value="edit" onclick="editRow({{id}})">'+
+            '<input type="button" value="edit" onclick="injectEditForm({{id}})">'+
           '</form>'+
           '<form>'+
             '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
