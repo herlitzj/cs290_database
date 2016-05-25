@@ -89,7 +89,7 @@ app.post('/workouts',function (req, res){
     payload.rows = result.rows;
     res.send(payload);
     });
-  }
+  });
 });
 
 app.post('/reset', function (req, res){
