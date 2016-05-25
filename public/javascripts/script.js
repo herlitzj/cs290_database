@@ -35,6 +35,7 @@ var editRow = function() {
     'lbs': document.getElementById('editLbs').value,
   }
   put(formData, loadHandlebars);
+  cancelEdit;
 }
 
 var get = function(callback) {
@@ -88,10 +89,13 @@ var injectEditForm = function(rowId) {
   var blankTemplate = editForm;
   var compiledTemplate = Handlebars.compile(blankTemplate);
   var loadedTemplate = compiledTemplate({editData: editData});
-  console.log("DATA: ", editData);
-  console.log("TEMPLATE: ", loadedTemplate);
   document.getElementById("edit-template").innerHTML = loadedTemplate;
   document.getElementById("editRow").onclick = editRow;
+  document.getElementById("cancelEdit").onclick = cancelEdit;
+}
+
+var cancelEdit = function() {
+  document.getElementById("edit-template").innerHTML = '';
 }
 
 var deleteRow = function(data, callback) {
@@ -168,4 +172,5 @@ var handlebarsTemplate = '<table>'+
       '</select><br>'+
       '<input type="hidden" name="id" value="{{editData.id}}" id="editId"/><br>'+
       '<input type="button" value="Edit Row" id="editRow" />'+
+      '<input type="button" value="Cancel" id="cancelEdit" />'+
     '</form>'
