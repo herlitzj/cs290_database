@@ -95,8 +95,8 @@ var formatData = function(data) {
     if(row.lbs === 0) row.lbs = "LBS";
     else row.lbs = "KG";
 
-    var dateMatch = row.date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
-    row.date = dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
+    var dateMatch = row.date.match(/^(\d{4}-\d{2}-\d{2}).*/);
+    row.date = dateMatch[1]
   })
   console.log("AFTER: ", data);
 
