@@ -77,7 +77,7 @@ var post = function(data, callback) {
 
 var deleteRow = function(data, callback) {
   var formData = {
-    'id': document.getElementById('postName').value
+    'id': data;
   }
   var req = new XMLHttpRequest();
   req.onreadystatechange = function(data) {
@@ -115,7 +115,7 @@ var handlebarsTemplate = '<table>'+
             '<button type="submit" formmethod="put" formaction="/">Edit</button>'+
           '</form>'+
           '<form>'+
-            '<input type="button" value="delete" onclick="deleteRow({{id}})">'+
+            '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
           '</form>'+
           '</td>'+
         '</tr>'+

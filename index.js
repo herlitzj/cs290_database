@@ -94,7 +94,7 @@ app.delete('/workouts', function (req, res) {
   console.log("DELETE REQ: ", req);
   var payload = {};
   var sql = "DELETE * FROM workouts WHERE id = ?;";
-  var id = req.body.id;
+  var id = req.body;
   sql = mysql.format(sql, values);
   pool.query(sql, function() {
     pool.query("SELECT * FROM workouts;", function(err, rows, fields) {
