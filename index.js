@@ -91,6 +91,7 @@ app.post('/workouts',function (req, res){
 });
 
 app.delete('/workouts', function (req, res) {
+  console.log("DELETE REQ: ", req);
   var payload = {};
   var sql = "DELETE * FROM workouts WHERE id = ?;";
   var id = req.body.id;
