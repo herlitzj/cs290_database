@@ -97,7 +97,7 @@ var handlebarsTemplate = '<table>'+
       '<th>Edit</th>'+
     '</tr>'+
       '{{#each rows}}'+
-        '<tr>'+
+        '<tr id="row{{id}}">'+
           '<form>'+
             '<td>{{name}}</td>'+
             '<td>{{reps}}</td>'+
@@ -106,6 +106,7 @@ var handlebarsTemplate = '<table>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
             '<button type="submit" formmethod="put" formaction="/">Edit</button>'+
+            '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
           '</form>'+
           '<form>'+
             '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
