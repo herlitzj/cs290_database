@@ -77,17 +77,19 @@ app.post('/workouts',function (req, res){
                 req.body.lbs];
   sql = mysql.format(sql, values);
   console.log("SQL: ", sql)
-  pool.query(sql, function(err, result, other){
-    console.log(result);
-    console.log(other);
-    if(err){
-        console.log("POST ERROR: ", err);
-    return;
+  pool.query(sql, function() {
+    pool.query("SELECT * FROM workouts;", function(err, result, other){
+      console.log(result);
+      console.log(other);
+      if(err){
+          console.log("POST ERROR: ", err);
+      return;
+    }
+    payload.results = "Inserted id " + result.insertId;
+    payload.rows = result.rows;
+    res.send(payload);
+    });
   }
-  payload.results = "Inserted id " + result.insertId;
-  payload.rows = result.rows;
-  res.send(payload);
-  });
 });
 
 app.post('/reset', function (req, res){
