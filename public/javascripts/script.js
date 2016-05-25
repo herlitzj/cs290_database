@@ -92,8 +92,8 @@ var deleteRow = function(data, callback) {
 var formatData = function(data) {
   console.log("RAW: ", data)
   data.rows.forEach(function(row) {
-    if(row.weight === 0) row.weight = "LBS";
-    else row.weight = "KG";
+    if(row.lbs === 0) row.lbs = "LBS";
+    else row.lbs = "KG";
 
     var dateMatch = row.date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
     row.date = dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
