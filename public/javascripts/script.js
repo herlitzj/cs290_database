@@ -149,5 +149,5 @@ var handlebarsTemplate = '<table>'+
         '<option value="true">lbs</option>'+
         '<option value="false">kg</option>'+
       '</select><br>'+
-      '<input type="button" value="Add Row" id="editRow"/>'+
+      '<input type="button" value="Add Row" id="editRow" onclick"editRow()"/>'+
     '</form>'
