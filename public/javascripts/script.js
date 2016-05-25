@@ -84,7 +84,7 @@ var injectEditForm = function(rowId) {
     reps: row.cells[1].textContent,
     weight: row.cells[2].textContent,
     date: row.cells[3].textContent,
-    lbs: row.cells[4].textContent
+    lbs: row.cells[4].textContent === 'LBS' ? 0 : 1
   }
   var blankTemplate = editForm;
   var compiledTemplate = Handlebars.compile(blankTemplate);
@@ -166,7 +166,7 @@ var handlebarsTemplate = '<table>'+
       '<label for="postDate">Date</label>'+
       '<input type="date" name="date" value="{{editData.date}}" id="editDate"/><br>'+
       '<label for="PostLbs">lbs?</label>'+
-      '<select name="lbs" value={{#if editData.lbs == "LBS"}}0{{else}}1{{/if}} id="editLbs"/>'+
+      '<select name="lbs" value={{editData.lbs}} id="editLbs"/>'+
         '<option value=0>lbs</option>'+
         '<option value=1>kg</option>'+
       '</select><br>'+
