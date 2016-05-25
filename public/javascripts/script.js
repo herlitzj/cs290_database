@@ -74,11 +74,11 @@ var post = function(data, callback) {
 var injectEditForm = function(rowId) {
   var row = document.getElementById('row' + rowId);
   var editData = {
-    name: row[0].textContent,
-    reps: row[1].textContent,
-    weight: row[2].textContent,
-    date: row[3].textContent,
-    lbs: row[4].textContent
+    name: row.cells[0].textContent,
+    reps: row.cells[1].textContent,
+    weight: row.cells[2].textContent,
+    date: row.cells[3].textContent,
+    lbs: row.cells[4].textContent
   }
   var blankTemplate = editForm;
   var compiledTemplate = Handlebars.compile(blankTemplate);
