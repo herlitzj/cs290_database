@@ -78,15 +78,13 @@ app.post('/workouts',function (req, res){
   sql = mysql.format(sql, values);
   console.log("SQL: ", sql)
   pool.query(sql, function() {
-    pool.query("SELECT * FROM workouts;", function(err, result, other){
+    pool.query("SELECT * FROM workouts;", function(err, rows, fields){
       console.log(result);
-      console.log(other);
       if(err){
           console.log("POST ERROR: ", err);
       return;
     }
-    payload.results = "Inserted id " + result.insertId;
-    payload.rows = result.rows;
+    payload.rows = result;
     res.send(payload);
     });
   });
