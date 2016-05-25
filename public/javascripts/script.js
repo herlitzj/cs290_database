@@ -35,7 +35,7 @@ var editRow = function() {
     'lbs': document.getElementById('editLbs').value,
   }
   put(formData, loadHandlebars);
-  cancelEdit;
+  cancelEdit();
 }
 
 var get = function(callback) {
