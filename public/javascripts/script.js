@@ -27,6 +27,7 @@ var addRow = function() {
 
 var editRow = function() {
   var formData = {
+    'id': document.getElementById('editId').value,
     'name': document.getElementById('editName').value,
     'reps': document.getElementById('editReps').value,
     'weight': document.getElementById('editWeight').value,
@@ -60,9 +61,24 @@ var post = function(data, callback) {
   req.send(JSON.stringify(payload));
 }
 
+var put = function(data, callback) {
+  callback = loadHandlebars;
+  var req = new XMLHttpRequest();
+  req.onreadystatechange = function(data) {
+    if (req.readyState == 4 && req.status == 200) {
+      callback(data.target.responseText);
+    };
+  };
+  var payload = data;
+  req.open('PUT', '/workouts', true);
+  req.setRequestHeader('Content-Type', 'application/json');
+  req.send(JSON.stringify(payload));
+}
+
 var injectEditForm = function(rowId) {
   var row = document.getElementById('row' + rowId);
   var editData = {
+    id: rowId,
     name: row.cells[0].textContent,
     reps: row.cells[1].textContent,
     weight: row.cells[2].textContent,
@@ -150,5 +166,6 @@ var handlebarsTemplate = '<table>'+
         '<option value="true">lbs</option>'+
         '<option value="false">kg</option>'+
       '</select><br>'+
+      '<input type="hidden" name="id" value="{{editData.id}}" id="editId"/><br>'+
       '<input type="button" value="Edit Row" id="editRow" />'+
     '</form>'
