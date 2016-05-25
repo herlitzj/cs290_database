@@ -1,23 +1,23 @@
-  <h3>Add a row</h3>
-  <form method="post" action="/" id="postForm">
-    <label for="postName">Name</label>
-    <input type="text" name="name" id="postName"/><br>
-    <label for="postReps">Reps</label>
-    <input type="number" name="reps" id="postReps"/><br>
-    <label for="postWeight">Weight</label>
-    <input type="text" name="weight" id="postWeight"/><br>
-    <label for="postDate">Date</label>
-    <input type="date" name="date" id="postDate"/><br>
-    <label for="PostLbs">lbs?</label>
-    <select name="lbs" id="postLbs"/>
-      <option value='true'>lbs</option>
-      <option value='false'>kg</option>
-    </select><br>
-    <input type="button" value="Add Row" id='addRow'/>
-  </form>
+<h3>Add a row</h3>
+<form method="post" action="/" id="postForm">
+  <label for="postName">Name</label>
+  <input type="text" name="name" id="postName"/><br>
+  <label for="postReps">Reps</label>
+  <input type="number" name="reps" id="postReps"/><br>
+  <label for="postWeight">Weight</label>
+  <input type="text" name="weight" id="postWeight"/><br>
+  <label for="postDate">Date</label>
+  <input type="date" name="date" id="postDate"/><br>
+  <label for="PostLbs">lbs?</label>
+  <select name="lbs" id="postLbs"/>
+    <option value='true'>lbs</option>
+    <option value='false'>kg</option>
+  </select><br>
+  <input type="button" value="Add Row" id='addRow'/>
+</form>
 
 <div id='handlebars-insert'></div>
-
+<div id='edit-template'></div>
 <br>
 <form>
   <button type="submit" formmethod="post" formaction="/reset" onclick="return confirm('This will delete all data. Are you sure you wish to continue?')">Reset Database</button>

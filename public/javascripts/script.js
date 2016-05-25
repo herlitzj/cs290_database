@@ -71,6 +71,21 @@ var post = function(data, callback) {
   req.send(JSON.stringify(payload));
 }
 
+var injectEditForm = function(rowId) {
+  var row = getElementById('row' + rowId);
+  var editData = {
+    name: row[0].textContent,
+    reps: row[1].textContent,
+    weight: row[2].textContent,
+    date: row[3].textContent,
+    lbs: row[4].textContent
+  }
+  var blankTemplate = editForm;
+  var compiledTemplate = Handlebars.compile(blankTemplate);
+  var loadedTemplate = compiledTemplate(editData);
+  document.getElementById("edit-template").innerHTML = loadedTemplate;
+}
+
 var deleteRow = function(data, callback) {
   console.log("DLETE ROW: ", data);
   var req = new XMLHttpRequest();
@@ -105,8 +120,7 @@ var handlebarsTemplate = '<table>'+
             '<td>{{date}}</td>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
-            '<button type="submit" formmethod="put" formaction="/">Edit</button>'+
-            '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
+            '<input type="button" value="edit" onclick="editRow({{id}})">'+
           '</form>'+
           '<form>'+
             '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
@@ -115,3 +129,21 @@ var handlebarsTemplate = '<table>'+
         '</tr>'+
     '{{/each}}'+
   '</table>'
+
+  var editForm = '<h3>Add a row</h3>'+
+    '<form method="post" action="/" id="postForm">'+
+      '<label for="postName">Name</label>'+
+      '<input type="text" name="name" value="{{editData.name}}" id="postName"/><br>'+
+      '<label for="postReps">Reps</label>'+
+      '<input type="number" name="reps" value="{{editData.reps}}" id="postReps"/><br>'+
+      '<label for="postWeight">Weight</label>'+
+      '<input type="text" name="weight" value="{{editData.weight}}" id="postWeight"/><br>'+
+      '<label for="postDate">Date</label>'+
+      '<input type="date" name="date" value="{{editData.date}}" id="postDate"/><br>'+
+      '<label for="PostLbs">lbs?</label>'+
+      '<select name="lbs" value="{{editData.lbs}}" id="postLbs"/>'+
+        '<option value="true">lbs</option>'+
+        '<option value="false">kg</option>'+
+      '</select><br>'+
+      '<input type="button" value="Add Row" id="editRow"/>'+
+    '</form>'
