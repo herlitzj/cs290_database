@@ -70,8 +70,7 @@ var post = function(data, callback) {
   req.send(JSON.stringify(payload));
 }
 
-var handlebarsTemplate = '
-<table>
+var handlebarsTemplate = '<table>
     <tr>
       <th id="table_name" colspan="6">Workout Tracker</th>
     </tr>
