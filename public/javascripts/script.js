@@ -5,28 +5,6 @@ function readyPage() {
 };
 window.onload = readyPage;
 
-
-// function bindButtons(){  
-//   console.log("script loaded");
-//   document.getElementById('postSubmit').addEventListener('click', function(event) {
-//     console.log("POST BUTTON CLICKED");
-//     var req = new XMLHttpRequest();
-//     var formData = {
-//       'name': document.getElementById('postName').value,
-//       'reps': document.getElementById('postReps').value,
-//       'weight': document.getElementById('postWeight').value,
-//       'date': document.getElementById('postDate').value,
-//       'lbs': document.getElementById('postLbs').value,
-//     }
-//     var payload = {text: formData};
-//     req.open('POST', '/', true);
-//     req.setRequestHeader('Content-Type', 'application/json');
-//     req.send(JSON.stringify(payload));
-//     event.preventDefault();
-//   });
-// }
-
-
 var loadHandlebars = function(data) {
   console.log(data);
   var workoutData = JSON.parse(data);
@@ -45,6 +23,17 @@ var addRow = function() {
     'lbs': document.getElementById('postLbs').value,
   }
   post(formData, loadHandlebars);
+}
+
+var editRow = function() {
+  var formData = {
+    'name': document.getElementById('editName').value,
+    'reps': document.getElementById('editReps').value,
+    'weight': document.getElementById('editWeight').value,
+    'date': document.getElementById('editDate').value,
+    'lbs': document.getElementById('editLbs').value,
+  }
+  put(formData, loadHandlebars);
 }
 
 var get = function(callback) {
@@ -101,6 +90,11 @@ var deleteRow = function(data, callback) {
   req.send();
 }
 
+var formatDate = function(date) {
+  var dateMatch = date.match(/^(\d{4})-(\d{2})-(\d{2}).*/);
+  return dateMatch[2] + '-' + dateMatch[3] + '-' +dateMatch[1]
+}
+
 var handlebarsTemplate = '<table>'+
     '<tr>'+
       '<th id="table_name" colspan="6">Workout Tracker</th>'+
@@ -118,8 +112,8 @@ var handlebarsTemplate = '<table>'+
           '<form>'+
             '<td>{{name}}</td>'+
             '<td>{{reps}}</td>'+
-            '<td>{{weight}}</td>'+
-            '<td>{{date}}</td>'+
+            '<td>{{/if weight=0}} LBS {{else}} KG {{/if}}</td>'+
+            '<td>formatDate({{date}})</td>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
             '<input type="button" value="edit" onclick="injectEditForm({{id}})">'+
@@ -132,18 +126,18 @@ var handlebarsTemplate = '<table>'+
     '{{/each}}'+
   '</table>'
 
-  var editForm = '<h3>Add a row</h3>'+
-    '<form method="post" action="/" id="postForm">'+
+  var editForm = '<h3>Edit entry {{editData.id}}</h3>'+
+    '<form method="post" action="/" id="editForm">'+
       '<label for="postName">Name</label>'+
-      '<input type="text" name="name" value="{{editData.name}}" id="postName"/><br>'+
+      '<input type="text" name="name" value="{{editData.name}}" id="editName"/><br>'+
       '<label for="postReps">Reps</label>'+
-      '<input type="number" name="reps" value="{{editData.reps}}" id="postReps"/><br>'+
+      '<input type="number" name="reps" value="{{editData.reps}}" id="editReps"/><br>'+
       '<label for="postWeight">Weight</label>'+
-      '<input type="text" name="weight" value="{{editData.weight}}" id="postWeight"/><br>'+
+      '<input type="text" name="weight" value="{{editData.weight}}" id="editWeight"/><br>'+
       '<label for="postDate">Date</label>'+
-      '<input type="date" name="date" value="{{editData.date}}" id="postDate"/><br>'+
+      '<input type="date" name="date" value="{{editData.date}}" id="editDate"/><br>'+
       '<label for="PostLbs">lbs?</label>'+
-      '<select name="lbs" value="{{editData.lbs}}" id="postLbs"/>'+
+      '<select name="lbs" value="{{editData.lbs}}" id="editLbs"/>'+
         '<option value="true">lbs</option>'+
         '<option value="false">kg</option>'+
       '</select><br>'+
