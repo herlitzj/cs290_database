@@ -112,7 +112,7 @@ var handlebarsTemplate = '<table>'+
           '<form>'+
             '<td>{{name}}</td>'+
             '<td>{{reps}}</td>'+
-            '<td>{{/if weight=0}} LBS {{else}} KG {{/if}}</td>'+
+            '<td>{{#if weight=0}} LBS {{else}} KG {{/if}}</td>'+
             '<td>formatDate({{date}})</td>'+
             '<td>{{lbs}}</td>'+
             '<td>'+
