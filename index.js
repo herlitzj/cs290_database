@@ -90,11 +90,11 @@ app.post('/workouts',function (req, res){
   });
 });
 
-app.delete('/workouts', function (req, res) {
+app.post('/workouts/:id', function (req, res) {
   console.log("DELETE REQ: ", req);
   var payload = {};
   var sql = "DELETE * FROM workouts WHERE id = ?;";
-  var id = req.body;
+  var id = req.params.id;
   sql = mysql.format(sql, values);
   pool.query(sql, function() {
     pool.query("SELECT * FROM workouts;", function(err, rows, fields) {

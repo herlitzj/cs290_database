@@ -76,6 +76,7 @@ var post = function(data, callback) {
 }
 
 var deleteRow = function(data, callback) {
+  console.log("DLETE ROW: ", data);
   var formData = {
     'id': data
   }
@@ -86,7 +87,7 @@ var deleteRow = function(data, callback) {
     };
   };
   var payload = data;
-  req.open('DELETE', '/workouts', true);
+  req.open('POST', '/workouts/' + data, true);
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
 }
