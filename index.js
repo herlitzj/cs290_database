@@ -95,7 +95,7 @@ app.post('/workouts/:id', function (req, res) {
   var payload = {};
   var sql = "DELETE * FROM workouts WHERE id = ?;";
   var id = req.params.id;
-  sql = mysql.format(sql, values);
+  sql = mysql.format(sql, id);
   pool.query(sql, function() {
     pool.query("SELECT * FROM workouts;", function(err, rows, fields) {
       if(err){
