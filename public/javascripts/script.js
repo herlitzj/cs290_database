@@ -86,7 +86,7 @@ var deleteRow = function(data, callback) {
     };
   };
   var payload = data;
-  req.open('POST', '/workouts', true);
+  req.open('DELETE', '/workouts', true);
   req.setRequestHeader('Content-Type', 'application/json');
   req.send(JSON.stringify(payload));
 }
