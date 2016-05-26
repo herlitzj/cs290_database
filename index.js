@@ -24,7 +24,6 @@ app.get('/', function (req, res){
 })
 
 app.get('/workouts',function (req, res){
-  console.log("Getting workouts")
   var payload = {};
   pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
@@ -32,7 +31,6 @@ app.get('/workouts',function (req, res){
       return;
     }
     payload.rows = rows;
-    console.log(payload);
     res.send(payload);
   });
 });
@@ -56,7 +54,6 @@ app.put('/workouts/:id',function (req, res){
       var curVals = result[0];
       pool.query(sql, function() {
         pool.query("SELECT * FROM workouts;", function(err, rows, fields){
-          console.log(rows);
           if(err){
             console.log("PUT ERROR: ", err);
             return;
@@ -71,7 +68,6 @@ app.put('/workouts/:id',function (req, res){
 
 app.post('/workouts',function (req, res){
   var payload = {};
-  console.log("BODY: ", req.body);
   var sql = "INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?,?,?,?,?);";
   var values = [req.body.name, 
                 req.body.reps, 
@@ -81,7 +77,6 @@ app.post('/workouts',function (req, res){
   sql = mysql.format(sql, values);
   pool.query(sql, function() {
     pool.query("SELECT * FROM workouts;", function(err, rows, fields){
-      console.log(rows);
       if(err){
         console.log("POST ERROR: ", err);
         return;
@@ -93,7 +88,6 @@ app.post('/workouts',function (req, res){
 });
 
 app.post('/workouts/:id', function (req, res) {
-  console.log("PARAMS: ", req.params);
   var payload = {};
   var sql = "DELETE FROM workouts WHERE id = ?;";
   var id = req.params.id;
