@@ -1,17 +1,27 @@
 function readyPage() {
   get(loadHandlebars);
   document.getElementById('addRow').onclick = addRow;
-  console.log("LOADED");
 };
 window.onload = readyPage;
 
 var loadHandlebars = function(data) {
-  console.log(data);
   var workoutData = formatData(JSON.parse(data));
   var blankTemplate = handlebarsTemplate;
   var compiledTemplate = Handlebars.compile(blankTemplate);
   var loadedTemplate = compiledTemplate(workoutData);
   document.getElementById("handlebars-insert").innerHTML = loadedTemplate;
+}
+
+var formatData = function(data) {
+  data.rows.forEach(function(row) {
+    if(row.lbs === 0) row.lbs = "LBS";
+    else row.lbs = "KG";
+
+    var dateMatch = row.date.match(/^(\d{4}-\d{2}-\d{2}).*/);
+    row.date = dateMatch[1]
+  })
+
+  return data;
 }
 
 var addRow = function() {
@@ -110,67 +120,53 @@ var deleteRow = function(data, callback) {
   req.send();
 }
 
-var formatData = function(data) {
-  console.log("RAW: ", data)
-  data.rows.forEach(function(row) {
-    if(row.lbs === 0) row.lbs = "LBS";
-    else row.lbs = "KG";
-
-    var dateMatch = row.date.match(/^(\d{4}-\d{2}-\d{2}).*/);
-    row.date = dateMatch[1]
-  })
-  console.log("AFTER: ", data);
-
-  return data;
-}
-
 var handlebarsTemplate = '<table>'+
-    '<tr>'+
-      '<th id="table_name" colspan="6">Workout Tracker</th>'+
-    '</tr>'+
-    '<tr>'+
-      '<th>Name</th>'+
-      '<th>Reps</th>'+
-      '<th>Weight</th>'+
-      '<th>Date</th>'+
-      '<th>LBS/KG</th>'+
-      '<th>Edit</th>'+
-    '</tr>'+
-      '{{#each rows}}'+
-        '<tr id="row{{id}}">'+
-          '<form>'+
-            '<td>{{name}}</td>'+
-            '<td>{{reps}}</td>'+
-            '<td>{{weight}}</td>'+
-            '<td>{{date}}</td>'+
-            '<td>{{lbs}}</td>'+
-            '<td>'+
-            '<input type="button" value="edit" onclick="injectEditForm({{id}})">'+
-          '</form>'+
-          '<form>'+
-            '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
-          '</form>'+
-          '</td>'+
-        '</tr>'+
-    '{{/each}}'+
-  '</table>'
+  '<tr>'+
+    '<th id="table_name" colspan="6">Workout Tracker</th>'+
+  '</tr>'+
+  '<tr>'+
+    '<th>Name</th>'+
+    '<th>Reps</th>'+
+    '<th>Weight</th>'+
+    '<th>Date</th>'+
+    '<th>LBS/KG</th>'+
+    '<th>Edit</th>'+
+  '</tr>'+
+    '{{#each rows}}'+
+      '<tr id="row{{id}}">'+
+        '<form>'+
+          '<td>{{name}}</td>'+
+          '<td>{{reps}}</td>'+
+          '<td>{{weight}}</td>'+
+          '<td>{{date}}</td>'+
+          '<td>{{lbs}}</td>'+
+          '<td>'+
+          '<input type="button" value="edit" onclick="injectEditForm({{id}})">'+
+        '</form>'+
+        '<form>'+
+          '<input type="button" value="delete" onclick="deleteRow({{id}}, loadHandlebars)">'+
+        '</form>'+
+        '</td>'+
+      '</tr>'+
+  '{{/each}}'+
+'</table>'
 
-  var editForm = '<h3>Edit entry {{editData.id}}</h3>'+
-    '<form method="post" action="/" id="editForm">'+
-      '<label for="postName">Name</label>'+
-      '<input type="text" name="name" value="{{editData.name}}" id="editName"/><br>'+
-      '<label for="postReps">Reps</label>'+
-      '<input type="number" name="reps" value="{{editData.reps}}" id="editReps"/><br>'+
-      '<label for="postWeight">Weight</label>'+
-      '<input type="text" name="weight" value="{{editData.weight}}" id="editWeight"/><br>'+
-      '<label for="postDate">Date</label>'+
-      '<input type="date" name="date" value="{{editData.date}}" id="editDate"/><br>'+
-      '<label for="PostLbs">lbs?</label>'+
-      '<select name="lbs" id="editLbs"/>'+
-        '<option value=0 {{#if editData.lbs}}selected="selected"{{/if}}>lbs</option>'+
-        '<option value=1 {{#unless editData.lbs}}selected="selected"{{/unless}}>kg</option>'+
-      '</select><br>'+
-      '<input type="hidden" name="id" value="{{editData.id}}" id="editId"/><br>'+
-      '<input type="button" value="Edit Row" id="editRow" />'+
-      '<input type="button" value="Cancel" id="cancelEdit" />'+
-    '</form>'
+var editForm = '<h3>Edit entry {{editData.id}}</h3>'+
+  '<form method="post" action="/" id="editForm">'+
+    '<label for="postName">Name</label>'+
+    '<input type="text" name="name" value="{{editData.name}}" id="editName"/><br>'+
+    '<label for="postReps">Reps</label>'+
+    '<input type="number" name="reps" value="{{editData.reps}}" id="editReps"/><br>'+
+    '<label for="postWeight">Weight</label>'+
+    '<input type="text" name="weight" value="{{editData.weight}}" id="editWeight"/><br>'+
+    '<label for="postDate">Date</label>'+
+    '<input type="date" name="date" value="{{editData.date}}" id="editDate"/><br>'+
+    '<label for="PostLbs">lbs?</label>'+
+    '<select name="lbs" id="editLbs"/>'+
+      '<option value=0 {{#if editData.lbs}}selected="selected"{{/if}}>lbs</option>'+
+      '<option value=1 {{#unless editData.lbs}}selected="selected"{{/unless}}>kg</option>'+
+    '</select><br>'+
+    '<input type="hidden" name="id" value="{{editData.id}}" id="editId"/><br>'+
+    '<input type="button" value="Edit Row" id="editRow" />'+
+    '<input type="button" value="Cancel" id="cancelEdit" />'+
+  '</form>'

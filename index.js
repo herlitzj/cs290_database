@@ -131,7 +131,6 @@ app.post('/reset', function (req, res){
 
 app.use(function (err, req, res, next) {
   console.log("THERE WAS AN ERROR: ", err);
-  console.log('ERROR REQ: ', req.params);
   res.status(500).send('Internal Server Error');
 })
 
