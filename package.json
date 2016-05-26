@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/herlitzj/cs290_database/issues"
   },
-  "homepage": "https://github.com/herlitzj/cs290_database#readme",
+  "homepage": "http://52.36.84.159:3000/",
   "dependencies": {
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
