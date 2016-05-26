@@ -167,8 +167,8 @@ var handlebarsTemplate = '<table>'+
       '<input type="date" name="date" value="{{editData.date}}" id="editDate"/><br>'+
       '<label for="PostLbs">lbs?</label>'+
       '<select name="lbs" id="editLbs"/>'+
-        '<option value=0 selected={{#if lbs}}"selected"{{/if}}>lbs</option>'+
-        '<option value=1 selected={{#if lbs}}"selected"{{/if}}>kg</option>'+
+        '<option value=0 {{#if editData.lbs}}selected="selected"{{/if}}>lbs</option>'+
+        '<option value=1 {{#unless editData.lbs}}selected="selected"{{/unless}}>kg</option>'+
       '</select><br>'+
       '<input type="hidden" name="id" value="{{editData.id}}" id="editId"/><br>'+
       '<input type="button" value="Edit Row" id="editRow" />'+
