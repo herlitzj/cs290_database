@@ -124,7 +124,7 @@ app.post('/reset', function (req, res){
     pool.query(createString, function(err){
       if(err) console.log(err);
       payload.results = "Table reset";
-      res.render('body');
+      res.redirect('/');
     })
   });
 });
